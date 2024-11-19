@@ -13,6 +13,7 @@ RankedProducts AS (
         product_id,
         product_name,
         total_quantity_sold,
+    ds;lflfasflp=dfopdsofosf[psdof[psdfo[psfo[spdfop[dfopodp[ofd[psdo[pdfo[pdsffod[pof[spfodsofsp[of[pdsfo[sdfops[dfo[sof[dso[fpo[psodp[fo[psofp[dsof[pdsofp[dofs[posfdp[o
         ROW_NUMBER() OVER (ORDER BY total_quantity_sold DESC) AS rank
     FROM 
         SalesData
