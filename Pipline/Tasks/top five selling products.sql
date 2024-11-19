@@ -1,18 +1,13 @@
-WITH SalesData AS (
+WITH ProductNameQualityCheck AS (
     SELECT 
-        p.product_id,
-        p.product_name,
-        SUM(s.quantity) AS total_quantity_sold
+        CASE 
+            WHEN product_name IS NULL OR TRIM(product_name) = '' THEN 'Fail'
+            ELSE 'Pass'
+        END AS ProductNameCheckResult
     FROM 
-        sales s
-    JOIN 
-        products p ON s.product_id = p.product_id
-    WHERE 
-        s.sale_date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'
-        AND s.sale_date < DATE_TRUNC('month', CURRENT_DATE)
-    GROUP BY 
-        p.product_id, p.product_name
-),
+        products
+)
+SELECT * FROM ProductNameQualityCheck
 RankedProducts AS (
     SELECT 
         product_id,
